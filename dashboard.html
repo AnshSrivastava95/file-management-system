@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureFS Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <div class="sidebar">
+        <h2><i class="fa-solid fa-shield-halved"></i> SecureFS</h2>
+
+        <h4><i class="fa-solid fa-folder"></i> Files</h4>
+        <div id="fileList" class="file-list"></div>
+
+        <button class="logout-btn" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+
+    <!-- ================= MAIN ================= -->
+    <div class="main">
+
+        <!-- CREATE FILE -->
+        <div class="card">
+            <h3><i class="fa-solid fa-plus"></i> Create File</h3>
+            <input id="filename" placeholder="Filename">
+            <textarea id="content" placeholder="File content"></textarea>
+            <button onclick="createFile()">
+                <i class="fa-solid fa-plus"></i> Create
+            </button>
+        </div>
+
+        <!-- FILE VIEWER -->
+        <div class="card">
+            <h3><i class="fa-solid fa-file-lines"></i> File Viewer</h3>
+            <div id="fileViewer" class="viewer">
+                Select a file to view content
+            </div>
+        </div>
+
+        <!-- 🔥 ADMIN PANEL -->
+        <div class="card" id="adminPanel" style="display:none;">
+            <h3><i class="fa-solid fa-user-shield"></i> Super Admin Panel</h3>
+
+            <input id="targetEmail" placeholder="User Email">
+
+            <select id="roleSelect">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button onclick="setRole()">
+                <i class="fa-solid fa-user-gear"></i> Assign Role
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

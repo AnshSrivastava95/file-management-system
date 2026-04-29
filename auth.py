@@ -4,9 +4,11 @@ from crud import create_user,get_user_by_email
 import uuid
 import smtplib
 from email.mime.text import MIMEText
+from model import user
 sessions={}
-EMAIL = "anshsrivastava112006@gmail.com"
-APP_PASSWORD = "xqcvncqnuhgcseid"
+from config import EMAIL,APP_PASSWORD
+EMAIL = EMAIL
+APP_PASSWORD = APP_PASSWORD
 
 def send_otp_email(receiver_email, otp):
     subject = "Your OTP Code"
@@ -31,13 +33,19 @@ def verify_password(password:str,hashed_password:str):
 def generate_otp():
     return str(random.randint(100000,999999))
 
-def register(db:Session,email:str,password:str):
-    existing=get_user_by_email(db,email)
+def register(db: Session, email: str, password: str):
+    existing = get_user_by_email(db, email)
     if existing:
-        return {"error":"user already exists"}
-    user=create_user(db,email,hash_password(password))
-    return {"message": "User registered successfully", "user_id": user.id}
-    
+        return {"error": "user already exists"}
+
+    total_users = db.query(user).count()
+
+    role = "superadmin" if total_users == 0 else "user"
+
+    new_user = create_user(db, email, hash_password(password), role)
+
+    return {"message": "User registered", "role": role}
+
 def login(db: Session, email: str, password: str):
     user = get_user_by_email(db, email)
     if not user:

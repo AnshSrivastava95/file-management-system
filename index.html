@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureFS</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="center">
+
+<div class="auth-card">
+
+    <h1><i class="fa-solid fa-shield-halved"></i> SecureFS</h1>
+
+    <!-- LOGIN -->
+    <div id="loginSection">
+        <h3>Login</h3>
+        <input id="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+        <button onclick="login()"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+        <p class="link" onclick="showRegister()">Create account</p>
+    </div>
+
+    <!-- OTP -->
+    <div id="otpSection" style="display:none;">
+        <h3>Verify OTP</h3>
+        <input id="otp" placeholder="Enter OTP">
+        <button onclick="verifyOTP()">Verify</button>
+        <p class="link" onclick="showLogin()">Back</p>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="registerSection" style="display:none;">
+        <h3>Register</h3>
+        <input id="regEmail" placeholder="Email">
+        <input id="regPassword" type="password" placeholder="Password">
+        <button onclick="register()">Register</button>
+        <p class="link" onclick="showLogin()">Back to login</p>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

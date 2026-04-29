@@ -20,6 +20,7 @@ def log_event(message: str):
 
 def check_permission(role: str, action: str):
     permissions = {
+        "superadmin":["read","write","delete"],
         "admin": ["read", "write", "delete"],
         "user": ["read", "write"]
     }
